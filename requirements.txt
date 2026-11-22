@@ -1,0 +1,8 @@
+Flask
+google-genai
+PyPDF2
+python-dotenv
+deep-translator
+Markdown
+bleach
+gunicorn

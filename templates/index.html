@@ -1,0 +1,207 @@
+<CodeBlock language="html" editable>
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>SchemeSathi AI | Government Scheme Assistant</title>
+
+<link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+<script src="{{ url_for('static', filename='script.js') }}"
+            defer></script>
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+<div class="brand">
+<div class="brand-icon">S</div>
+<span>SchemeSathi <strong>AI</strong></span>
+</div>
+
+<span class="nav-label">Digital Governance Assistant</span>
+</header>
+
+<main class="main-container">
+
+<section class="hero">
+
+<div class="hero-tag">
+<span class="tag-dot"></span>
+Intelligent Government Scheme Assistant
+</div>
+
+<h1>
+Government Schemes,<br>
+<span>Made Simple for Everyone.</span>
+</h1>
+
+<p>
+Upload a government scheme PDF and understand its
+eligibility, benefits, required documents and
+application process in your preferred language.
+</p>
+
+<div class="language-tags">
+<span>English</span>
+<span>ಕನ್ನಡ</span>
+<span>हिन्दी</span>
+</div>
+
+</section>
+
+<section class="upload-card">
+
+<div class="section-heading">
+<div>
+<h2>Analyze Government Scheme</h2>
+<p>Upload your official government document below.</p>
+</div>
+
+<div class="pdf-icon">PDF</div>
+</div>
+
+<form action="/analyze"
+                  method="POST"
+                  enctype="multipart/form-data">
+
+<label class="field-label">
+Select Language
+</label>
+
+<select name="language" id="language" required>
+
+<option value="English"
+{% if selected_language == "English" %}selected{% endif %}>
+English
+</option>
+
+<option value="Kannada"
+{% if selected_language == "Kannada" %}selected{% endif %}>
+ಕನ್ನಡ (Kannada)
+</option>
+
+<option value="Hindi"
+{% if selected_language == "Hindi" %}selected{% endif %}>
+हिन्दी (Hindi)
+</option>
+
+</select>
+
+<label class="field-label upload-label">
+Upload Government Scheme PDF
+</label>
+
+<label class="upload-area" for="pdf_file">
+
+<div class="upload-symbol">↑</div>
+
+<strong>Choose your PDF document</strong>
+
+<span id="file-name">
+Click here to browse your files
+</span>
+
+<small>PDF format · Maximum size 10 MB</small>
+
+</label>
+
+<input type="file"
+                       name="pdf_file"
+                       id="pdf_file"
+                       accept=".pdf,application/pdf"
+                       required>
+
+<button type="submit" class="analyze-button" id="submit-btn">
+Analyze Scheme
+<span>→</span>
+</button>
+
+</form>
+
+<p class="privacy-note">
+Your uploaded document is processed for this analysis.
+</p>
+
+</section>
+
+{% if error %}
+
+<section class="error-card">
+<strong>Unable to process your request</strong>
+<p>{{ error }}</p>
+</section>
+
+{% endif %}
+
+{% if result_html %}
+
+<section class="report-card">
+
+<div class="report-header">
+
+<div>
+<span class="report-label">ANALYSIS RESULT</span>
+<h2>Scheme Explanation</h2>
+<p class="filename">{{ filename }}</p>
+</div>
+
+<span class="mode-tag">{{ mode }}</span>
+
+</div>
+
+<div class="report-content">
+{{ result_html|safe }}
+</div>
+
+<div class="report-footer">
+<p>
+Please refer to the original official document
+before making decisions.
+</p>
+</div>
+
+</section>
+
+{% endif %}
+
+<section class="features">
+
+<div class="feature">
+<div class="feature-icon">01</div>
+<h3>Easy Understanding</h3>
+<p>Understand complex government policies in simple language.</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">02</div>
+<h3>Multilingual Support</h3>
+<p>Access scheme explanations in English, Kannada and Hindi.</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">03</div>
+<h3>Important Information</h3>
+<p>Find eligibility, benefits and required documents easily.</p>
+</div>
+
+</section>
+
+</main>
+
+<footer>
+<p>SchemeSathi AI · Making Government Schemes Accessible to Everyone</p>
+</footer>
+
+</body>
+</html>
+</CodeBlock>
